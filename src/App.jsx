@@ -35,9 +35,29 @@ function App() {
       starred: false,
     },
   ]);
+  const togglestartNote = (noteId) => {
+    setNotes(
+      notes.map((noteItem) => {
+        if (noteItem.id === noteId) {
+          return {
+            ...noteItem,
+            starred: !noteItem.starred,
+          };
+        }
+        return noteItem;
+      })
+    );
+  };
+  const deleteNote = (noteId) => {
+    setNotes(notes.filter((noteItem) => noteItem.id !== noteId));
+  };
   return (
     <>
-      <Notes notes={notes} />
+      <Notes
+        StartNote={togglestartNote}
+        deleteNote={deleteNote}
+        notes={notes}
+      />
     </>
   );
 }

@@ -7,7 +7,7 @@ import {
   Box,
 } from "@mui/material";
 
-const StickyNote = ({ note = { text: "", starred: false } }) => {
+const StickyNote = ({ note, StartNote, deleteNote }) => {
   return (
     <Box sx={{ minWidth: 200 }}>
       <Card variant="outlined" className="max-w-sm relative">
@@ -34,7 +34,23 @@ const StickyNote = ({ note = { text: "", starred: false } }) => {
           </Typography>
         </CardContent>
         <CardActions className="flex justify-end">
-          <Button size="small">Star</Button>
+          <Button
+            size="small"
+            onClick={() => {
+              StartNote(note.id);
+            }}
+          >
+            Star
+          </Button>
+          <Button
+            color="error"
+            size="small"
+            onClick={() => {
+              deleteNote(note.id);
+            }}
+          >
+            Delete
+          </Button>
         </CardActions>
       </Card>
     </Box>
