@@ -6,8 +6,12 @@ import {
   Card,
   Box,
 } from "@mui/material";
+import { useContext } from "react";
+import { AppContext } from "./AppContext";
 
-const StickyNote = ({ note, StartNote, deleteNote }) => {
+const StickyNote = ({ note }) => {
+  const { togglestartNote, deleteNote } = useContext(AppContext);
+
   return (
     <Box sx={{ minWidth: 200 }}>
       <Card variant="outlined" className="max-w-sm relative">
@@ -37,7 +41,7 @@ const StickyNote = ({ note, StartNote, deleteNote }) => {
           <Button
             size="small"
             onClick={() => {
-              StartNote(note.id);
+              togglestartNote(note.id);
             }}
           >
             Star

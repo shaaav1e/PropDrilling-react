@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import StickyNote from "./components/StickyNotes";
 import Notes from "./components/Notes";
+import { AppContext } from "./components/AppContext";
 
 function App() {
   const [notes, setNotes] = useState([
@@ -52,13 +53,9 @@ function App() {
     setNotes(notes.filter((noteItem) => noteItem.id !== noteId));
   };
   return (
-    <>
-      <Notes
-        StartNote={togglestartNote}
-        deleteNote={deleteNote}
-        notes={notes}
-      />
-    </>
+    <AppContext.Provider value={{ notes, togglestartNote, deleteNote }}>
+      <Notes />
+    </AppContext.Provider>
   );
 }
 
